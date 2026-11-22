@@ -1,25 +1,30 @@
 import "./SearchBar.css";
 
-function SearchBar({ query, onQueryChange,genre,
-  onGenreChange,sortBy,
-  onSortChange,}) {
+function SearchBar({
+  query,
+  onQueryChange,
+  genre,
+  onGenreChange,
+  sortBy,
+  onSortChange,
+}) {
   return (
     <div className="search-bar">
       <label className="search-bar__field search-bar__field--grow">
         <span className="search-bar__label">חיפוש</span>
         <input
-          className="search-bar__input"
-          type="search"
+          className={query ? "search-bar__input search-bar__input--active" : "search-bar__input"}
+          type="text"
           placeholder="שם הסרט..."
-           value={query}
+          value={query}
           onChange={e => onQueryChange(e.target.value)}
         />
       </label>
 
-       <label className="search-bar__field">
+      <label className="search-bar__field">
         <span className="search-bar__label">ז׳אנר</span>
         <select
-          className="search-bar__input"
+          className={genre !== "all" ? "search-bar__input search-bar__input--active" : "search-bar__input"}
           value={genre}
           onChange={e => onGenreChange(e.target.value)}
         >
@@ -30,7 +35,8 @@ function SearchBar({ query, onQueryChange,genre,
           <option value="Thriller">Thriller</option>
         </select>
       </label>
-       <label className="search-bar__field">
+
+      <label className="search-bar__field">
         <span className="search-bar__label">מיון</span>
         <select
           className="search-bar__input"
@@ -42,8 +48,6 @@ function SearchBar({ query, onQueryChange,genre,
           <option value="title">לפי שם</option>
         </select>
       </label>
-    
-
     </div>
   );
 }
